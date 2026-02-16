@@ -1,0 +1,48 @@
+<div class="form-container">
+  <h2>Sign up</h2>
+  <!-- <form> -->
+  <form (submit)="onSubmit($event)">
+    <div class="field">
+      <label for="username">Username</label>
+      <input
+        id="username"
+        type="text"
+        [formField]="form.username" />
+      @if (form.username().touched() && form.username().invalid()) {
+        <ul class="error-list">
+          @for (err of form.username().errors(); track $index) {
+            <li>{{ err.message }}</li>
+          }
+        </ul>
+      }
+    </div>
+
+    <div class="field">
+      <label for="email">Email</label>
+      <input
+        id="email"
+        type="email"
+        [formField]="form.email" />
+      @if (form.email().touched() && form.email().invalid()) {
+        <ul class="error-list">
+          @for (err of form.email().errors(); track $index) {
+            <li>{{ err.message }}</li>
+          }
+        </ul>
+      }
+    </div>
+
+    <div class="actions">
+      <!-- <button type="submit" [disabled]="form().invalid()">
+        Create account
+      </button> -->
+      <button type="submit" [disabled]="form().invalid() || form().submitting()"> 
+        @if (form().submitting()) {
+          Creating… 
+        } @else { 
+          Create account
+        }
+      </button>
+    </div>
+  </form>
+</div>
