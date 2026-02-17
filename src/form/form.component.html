@@ -1,7 +1,7 @@
 <div class="form-container">
   <h2>Sign up</h2>
-  <!-- <form> -->
-  <form (submit)="onSubmit($event)">
+  <form (submit)="onSubmit($event)" novalidate>
+  <!-- <form [formRoot]="form"> -->
     <div class="field">
       <label for="username">Username</label>
       <input
@@ -33,9 +33,6 @@
     </div>
 
     <div class="actions">
-      <!-- <button type="submit" [disabled]="form().invalid()">
-        Create account
-      </button> -->
       <button type="submit" [disabled]="form().invalid() || form().submitting()"> 
         @if (form().submitting()) {
           Creating… 
